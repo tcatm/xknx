@@ -127,10 +127,6 @@ class UDPTransport(KNXIPTransport):
         else:
             sock.bind((remote_addr[0], remote_addr[1]))
 
-        # ignore multicast datagrams sent by the host itself
-        # don't use when running multiple routing instances on a single host (interface)
-        sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_LOOP, 0)
-
         return sock
 
     async def connect(self) -> None:
